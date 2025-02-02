@@ -47,6 +47,34 @@ const App = () =>{
     }
   }
 
+  const handleMultiplyNumbers = () => {
+    console.log(currentNumber);
+
+    if (firstNumber === '0') {      
+      setFirstNumber(String(currentNumber));
+      setCurrentNumber('0');
+      setOperation('*');
+    } else {
+      const sum = Number(firstNumber) * Number(currentNumber);
+      setCurrentNumber(String(sum));
+      setOperation('');
+    }
+  }
+
+  const handleDivideNumbers = () => {
+    console.log(currentNumber);
+
+    if (firstNumber === '0') {      
+      setFirstNumber(String(currentNumber));
+      setCurrentNumber('0');
+      setOperation('/');
+    } else {
+      const sum = Number(firstNumber) / Number(currentNumber);
+      setCurrentNumber(String(sum));
+      setOperation('');
+    }
+  }
+
   const handleEquals = (num) => {
     if (firstNumber !== '0' && operation !== '' && currentNumber !== '0') {
       switch (operation) {
@@ -57,10 +85,10 @@ const App = () =>{
           handleSubtractNumbers();
           break;
         case '*':
-          // handleMultiplyNumbers();
+          handleMultiplyNumbers();
           break;
         case '/':
-          // handleDivideNumbers();
+          handleDivideNumbers();
           break;
         default:
           break;
@@ -73,8 +101,8 @@ const App = () =>{
       <Content>
         <Input value={currentNumber} />
         <Row>
-          <Button label="*"/>
-          <Button label="/"/>
+          <Button label="*" onClick={() => handleMultiplyNumbers()}/>
+          <Button label="/" onClick={() => handleDivideNumbers()}/>
           <Button label="C" onClick={() => handleOnClear()} /> 
           <Button label="0" onClick={() => handleAddNumber('0')}/>
         </Row>
